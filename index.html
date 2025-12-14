@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Core</title>
+
+<style>
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, #0e1116, #050608 70%);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+  color: #e5e7eb;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.core {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #1a1f26 0%, #0b0e12 70%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.05),
+    0 0 40px rgba(180,200,255,0.08);
+}
+
+.glow {
+  position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  border: 1px solid rgba(200,220,255,0.18);
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.percent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.status {
+  position: absolute;
+  bottom: -42px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(200,210,230,0.5);
+}
+
+@keyframes breathe {
+  0%, 100% {
+    opacity: 0.3;
+    box-shadow: 0 0 25px rgba(180,200,255,0.12);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 45px rgba(180,200,255,0.22);
+  }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <div class="core">
+    <div class="glow"></div>
+    <div class="percent">电量%</div>
+    <div class="status" id="status">Charging</div>
+  </div>
+</div>
+
+<script>
+const level = 电量;
+const status = document.getElementById("status");
+
+if (level >= 100) {
+  status.innerText = "Ready";
+} else if (level >= 80) {
+  status.innerText = "Almost Full";
+} else {
+  status.innerText = "Charging";
+}
+</script>
+
+</body>
+</html>
